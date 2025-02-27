@@ -48,10 +48,10 @@ class _RidePrefScreenState extends State<RidePrefScreen> {
             SizedBox(height: 100),
             Container(
               margin: EdgeInsets.symmetric(horizontal: BlaSpacings.xxl),
-              decoration: BoxDecoration(
-                color: Colors.white, // White background
-                borderRadius: BorderRadius.circular(16), // Rounded corners
-              ),
+              // decoration: BoxDecoration(
+              //   color: Colors.white, // White background
+              //   borderRadius: BorderRadius.circular(16), // Rounded corners
+              // ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
