@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:week_3_blabla_project/screens/ride/ride_screen.dart';
 import 'package:week_3_blabla_project/theme/theme.dart';
 import 'package:week_3_blabla_project/utils/animations_util.dart';
 import 'package:week_3_blabla_project/utils/date_time_util.dart';
@@ -75,7 +76,9 @@ class _RidePrefFormState extends State<RidePrefForm> {
   void onArrivalSelected() async {
     {
       Location? selectedLocation = await Navigator.of(context).push<Location>(
-        AnimationUtils.createBottomToTopRoute(BlaLocationPicker(initLocation: arrival,)));
+          AnimationUtils.createBottomToTopRoute(BlaLocationPicker(
+        initLocation: arrival,
+      )));
       if (selectedLocation != null) {
         setState(() {
           arrival = selectedLocation;
@@ -85,21 +88,37 @@ class _RidePrefFormState extends State<RidePrefForm> {
   }
 
   void switchLocations() {
-
-      setState(() {
-        final temp = departure;
-        departure = arrival;
-        arrival = temp;
-      });
-      print("switching locations");
-    
+    setState(() {
+      final temp = departure;
+      departure = arrival;
+      arrival = temp;
+    });
+    print("switching locations");
   }
 
   void _handleSearch() {
-    if (departure != null && arrival != null) {
-      print("Searching for a ride from ${departure!.name} to ${arrival!.name}");
+    bool hasDeparture = departure != null;
+    bool hasArrival = arrival != null;
+
+    if (hasDeparture && hasArrival) {
+      // 1- Create a RidePref from user inputs
+      final ridePref = RidePref(
+        departure: departure!,
+        departureDate: departureDate,
+        arrival: arrival!,
+        requestedSeats: requestedSeats,
+      );
+      Navigator.of(context).push(
+        AnimationUtils.createBottomToTopRoute(
+          RideScreen(initialRidePref: ridePref),
+        ),
+      );
     } else {
-      print("Please select a departure and arrival location");
+      // 2- Show an error message
+      final snackBar = SnackBar(
+        content: Text("Please select a departure and an arrival location"),
+      );
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
 
