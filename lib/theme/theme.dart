@@ -62,6 +62,7 @@ class BlaTextStyles {
 /// Bascially small (S), medium (m), large (l), extra large (x), extra extra large (xxl)
 ///
 class BlaSpacings {
+  static const double xs = 4;
   static const double s = 12;
   static const double m = 16; 
   static const double l = 24; 

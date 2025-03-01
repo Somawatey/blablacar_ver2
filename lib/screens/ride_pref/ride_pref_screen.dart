@@ -25,9 +25,8 @@ class RidePrefScreen extends StatefulWidget {
 
 class _RidePrefScreenState extends State<RidePrefScreen> {
 
-  
+  //while selecting a ride preference, navigate to the RideScreen
   onRidePrefSelected(RidePref ridePref) {
- 
    Navigator.of(context)
         .push(AnimationUtils.createBottomToTopRoute(RideScreen(
       initialRidePref: ridePref,
